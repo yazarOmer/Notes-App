@@ -27,7 +27,7 @@ export const Card = ({
                 <h2 className="text-neutral-950 font-inter font-bold text-2xl tracking-1">
                     {title}
                 </h2>
-                <span className="text-neutral-600 font-inter text-sm tracking-3">
+                <span className="text-neutral-600 font-inter text-sm tracking-3 text-center">
                     {description}
                 </span>
             </div>
