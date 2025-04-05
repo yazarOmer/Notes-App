@@ -8,11 +8,14 @@ import { Input } from "./ui/input";
 import { Button } from "./ui/button";
 import { signIn } from "@/lib/auth-client";
 import { useRouter } from "next/navigation";
-import { useState } from "react";
+import { useState, useTransition } from "react";
 import { FormError } from "./form-error";
+import { LoaderCircle } from "lucide-react";
 
 export const LoginForm = () => {
     const [error, setError] = useState("");
+    const [isPending, setIsPending] = useState(false);
+
     const form = useForm<z.infer<typeof LoginSchema>>({
         resolver: zodResolver(LoginSchema),
         defaultValues: {
@@ -25,6 +28,7 @@ export const LoginForm = () => {
 
     const onSubmit = async (values: z.infer<typeof LoginSchema>) => {
         setError("");
+        setIsPending(true);
         const { email, password } = values;
 
         await signIn.email(
@@ -35,6 +39,7 @@ export const LoginForm = () => {
                 },
                 onError: (ctx) => {
                     setError(ctx.error.message);
+                    setIsPending(false);
                 },
             }
         );
@@ -76,7 +81,13 @@ export const LoginForm = () => {
 
                 {error && <FormError message={error} />}
 
-                <Button>Login</Button>
+                <Button disabled={isPending}>
+                    {isPending ? (
+                        <LoaderCircle className="animate-spin" />
+                    ) : (
+                        "Login"
+                    )}
+                </Button>
             </Form>
         </form>
     );
