@@ -1,5 +1,5 @@
 "use client";
-import { signOut } from "@/lib/auth-client";
+import { signOut, useSession } from "@/lib/auth-client";
 import { useRouter } from "next/navigation";
 
 export default function Home() {
