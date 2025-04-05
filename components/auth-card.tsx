@@ -14,7 +14,7 @@ export const AuthCard = ({ children, mode }: AuthCardProps) => {
             {children}
             <Seperator />
 
-            <span className="text-center text-neutral-600 font-inter text-sm tracking-3 mb-4">
+            <span className="text-center text-neutral-600 font-inter text-sm tracking-3">
                 Or log in with:
             </span>
 

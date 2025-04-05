@@ -1,5 +1,5 @@
 import { AuthCard } from "@/components/auth-card";
-// import { RegisterForm } from "@/components/register.form";
+import { RegisterForm } from "@/components/register-form";
 import { Card } from "@/components/ui/card";
 
 const RegisterPage = () => {
@@ -9,8 +9,7 @@ const RegisterPage = () => {
             description="Sign up to start organizing your notes and boost your productivity."
         >
             <AuthCard mode="register">
-                register
-                {/* <RegisterForm /> */}
+                <RegisterForm />
             </AuthCard>
         </Card>
     );

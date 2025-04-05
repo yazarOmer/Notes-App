@@ -1,22 +1,29 @@
 "use client";
-import { LoginSchema } from "@/lib/schema";
+import { RegisterSchema } from "@/lib/schema";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
-import { Form, FormField, FormItem, FormLabel, FormMessage } from "./ui/form";
+import {
+    Form,
+    FormDescription,
+    FormField,
+    FormItem,
+    FormLabel,
+    FormMessage,
+} from "./ui/form";
 import { Input } from "./ui/input";
 import { Button } from "./ui/button";
 
-export const LoginForm = () => {
-    const form = useForm<z.infer<typeof LoginSchema>>({
-        resolver: zodResolver(LoginSchema),
+export const RegisterForm = () => {
+    const form = useForm<z.infer<typeof RegisterSchema>>({
+        resolver: zodResolver(RegisterSchema),
         defaultValues: {
             email: "",
             password: "",
         },
     });
 
-    const onSubmit = (values: z.infer<typeof LoginSchema>) => {
+    const onSubmit = (values: z.infer<typeof RegisterSchema>) => {
         console.log(values);
     };
 
@@ -46,11 +53,14 @@ export const LoginForm = () => {
                             <FormLabel>Password</FormLabel>
                             <Input {...field} isError={fieldState.error} />
                             <FormMessage />
+                            <FormDescription>
+                                At least 8 characters
+                            </FormDescription>
                         </FormItem>
                     )}
                 />
 
-                <Button>Login</Button>
+                <Button>Sign up</Button>
             </Form>
         </form>
     );
