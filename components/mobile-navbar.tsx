@@ -9,7 +9,7 @@ export const MobileNavbar = () => {
     const navLinks = [
         {
             id: 1,
-            href: "/",
+            href: "/notes",
             label: "Home",
             icon: <HiOutlineHome size={24} />,
         },

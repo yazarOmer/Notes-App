@@ -1,4 +1,4 @@
-import { HTMLAttributes, InputHTMLAttributes } from "react";
+import { InputHTMLAttributes } from "react";
 import { FieldError } from "react-hook-form";
 import { twMerge } from "tailwind-merge";
 

@@ -9,7 +9,7 @@ export const DesktopNavbar = () => {
         {
             id: 1,
             label: "All notes",
-            href: "/",
+            href: "/notes",
             icon: <HiOutlineHome size={20} />,
         },
         {
