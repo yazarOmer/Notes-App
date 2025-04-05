@@ -15,7 +15,7 @@ export default function Home() {
         });
     };
     return (
-        <div className="flex items-center justify-center min-h-screen">
+        <div className="">
             <button onClick={onSignOut} className="bg-red-300">
                 sign out
             </button>
