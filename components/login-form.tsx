@@ -6,8 +6,13 @@ import { z } from "zod";
 import { Form, FormField, FormItem, FormLabel, FormMessage } from "./ui/form";
 import { Input } from "./ui/input";
 import { Button } from "./ui/button";
+import { signIn } from "@/lib/auth-client";
+import { useRouter } from "next/navigation";
+import { useState } from "react";
+import { FormError } from "./form-error";
 
 export const LoginForm = () => {
+    const [error, setError] = useState("");
     const form = useForm<z.infer<typeof LoginSchema>>({
         resolver: zodResolver(LoginSchema),
         defaultValues: {
@@ -16,8 +21,23 @@ export const LoginForm = () => {
         },
     });
 
-    const onSubmit = (values: z.infer<typeof LoginSchema>) => {
-        console.log(values);
+    const router = useRouter();
+
+    const onSubmit = async (values: z.infer<typeof LoginSchema>) => {
+        setError("");
+        const { email, password } = values;
+
+        await signIn.email(
+            { email, password },
+            {
+                onSuccess: () => {
+                    router.push("/");
+                },
+                onError: (ctx) => {
+                    setError(ctx.error.message);
+                },
+            }
+        );
     };
 
     return (
@@ -44,11 +64,17 @@ export const LoginForm = () => {
                     render={({ field, fieldState }) => (
                         <FormItem>
                             <FormLabel>Password</FormLabel>
-                            <Input {...field} isError={fieldState.error} />
+                            <Input
+                                type="password"
+                                {...field}
+                                isError={fieldState.error}
+                            />
                             <FormMessage />
                         </FormItem>
                     )}
                 />
+
+                {error && <FormError message={error} />}
 
                 <Button>Login</Button>
             </Form>

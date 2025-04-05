@@ -13,23 +13,59 @@ import {
 } from "./ui/form";
 import { Input } from "./ui/input";
 import { Button } from "./ui/button";
+import { signUp } from "@/lib/auth-client";
+import { useRouter } from "next/navigation";
+import { useState } from "react";
+import { FormError } from "./form-error";
 
 export const RegisterForm = () => {
+    const [error, setError] = useState("");
+
     const form = useForm<z.infer<typeof RegisterSchema>>({
         resolver: zodResolver(RegisterSchema),
         defaultValues: {
             email: "",
             password: "",
+            name: "",
         },
     });
 
-    const onSubmit = (values: z.infer<typeof RegisterSchema>) => {
-        console.log(values);
+    const router = useRouter();
+
+    const onSubmit = async (values: z.infer<typeof RegisterSchema>) => {
+        setError("");
+        const { email, password, name } = values;
+        await signUp.email(
+            { email, password, name },
+            {
+                onSuccess: (ctx) => {
+                    router.push("/");
+                },
+                onError: (ctx) => {
+                    setError(ctx.error.message);
+                },
+            }
+        );
     };
 
     return (
         <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
             <Form {...form}>
+                <FormField
+                    control={form.control}
+                    name="name"
+                    render={({ field, fieldState }) => (
+                        <FormItem>
+                            <FormLabel>Name</FormLabel>
+                            <Input
+                                placeholder="John Doe"
+                                {...field}
+                                isError={fieldState.error}
+                            />
+                            <FormMessage />
+                        </FormItem>
+                    )}
+                />
                 <FormField
                     control={form.control}
                     name="email"
@@ -51,7 +87,11 @@ export const RegisterForm = () => {
                     render={({ field, fieldState }) => (
                         <FormItem>
                             <FormLabel>Password</FormLabel>
-                            <Input {...field} isError={fieldState.error} />
+                            <Input
+                                {...field}
+                                type="password"
+                                isError={fieldState.error}
+                            />
                             <FormMessage />
                             <FormDescription>
                                 At least 8 characters
@@ -59,6 +99,8 @@ export const RegisterForm = () => {
                         </FormItem>
                     )}
                 />
+
+                {error && <FormError message={error} />}
 
                 <Button>Sign up</Button>
             </Form>
