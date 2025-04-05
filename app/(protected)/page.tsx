@@ -16,7 +16,7 @@ export default function Home() {
     };
     return (
         <div className="">
-            <button onClick={onSignOut} className="bg-red-300">
+            <button onClick={onSignOut} className="">
                 sign out
             </button>
         </div>

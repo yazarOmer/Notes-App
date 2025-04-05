@@ -1,4 +1,5 @@
 import { DesktopNavbar } from "@/components/desktop-navbar";
+import { MobileBackground } from "@/components/mobile-background";
 import { MobileNavbar } from "@/components/mobile-navbar";
 
 const ProtectedLayout = ({ children }: { children: React.ReactNode }) => {
@@ -11,7 +12,12 @@ const ProtectedLayout = ({ children }: { children: React.ReactNode }) => {
             <div className="block lg:hidden">
                 <MobileNavbar />
             </div>
-            {children}
+
+            <MobileBackground />
+
+            <div className="bg-white flex-1 mt-12 md:mt-16 z-10 lg:mt-0 rounded-t-lg md:rounded-t-2xl lg:rounded-none">
+                {children}
+            </div>
         </div>
     );
 };
