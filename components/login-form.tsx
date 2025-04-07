@@ -35,7 +35,7 @@ export const LoginForm = () => {
             { email, password },
             {
                 onSuccess: () => {
-                    router.push("/");
+                    router.push("/notes");
                 },
                 onError: (ctx) => {
                     setError(ctx.error.message);

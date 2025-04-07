@@ -7,7 +7,7 @@ interface HeaderProps {
 
 export const Header = ({ title }: HeaderProps) => {
     return (
-        <div className="flex items-center justify-between w-full lg:h-20 lg:px-8 lg:border-b border-neutral-200">
+        <div className="flex items-center lg:fixed lg:top-0 bg-white justify-between w-full lg:w-[calc(100%-272px)] lg:h-20 lg:px-8 lg:border-b border-neutral-200">
             <h1 className="text-neutral-950 text-2xl font-bold">{title}</h1>
             <div className="hidden lg:flex items-center gap-4">
                 <Input

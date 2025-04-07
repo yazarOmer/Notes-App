@@ -43,7 +43,7 @@ export const RegisterForm = () => {
             { email, password, name },
             {
                 onSuccess: (ctx) => {
-                    router.push("/");
+                    router.push("/notes");
                 },
                 onError: (ctx) => {
                     setError(ctx.error.message);

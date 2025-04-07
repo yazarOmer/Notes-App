@@ -1,5 +1,5 @@
 const NotesPage = () => {
-    return <div>notes page</div>;
+    return <div></div>;
 };
 
 export default NotesPage;

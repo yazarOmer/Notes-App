@@ -2,9 +2,9 @@ import { Header } from "@/components/header";
 
 const NotesLayout = ({ children }: { children: React.ReactNode }) => {
     return (
-        <div className="h-screen">
+        <div className="h-full w-full">
             <Header title="All notes" />
-            {children}
+            <div className="lg:mt-20">{children}</div>
         </div>
     );
 };

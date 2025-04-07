@@ -40,7 +40,7 @@ export const MobileNavbar = () => {
     ];
 
     return (
-        <div className="grid grid-cols-5 z-20 px-4 md:px-8 py-3 fixed bottom-0 left-0 right-0 h-14 md:h-[74px] border-t border-neutral-200 bg-white drop-shadow-nav">
+        <div className="grid grid-cols-5 lg:hidden z-20 px-4 md:px-8 py-3 fixed bottom-0 left-0 right-0 h-14 md:h-[74px] border-t border-neutral-200 bg-white drop-shadow-nav">
             {navLinks.map((item, index) => (
                 <div
                     key={item.id}

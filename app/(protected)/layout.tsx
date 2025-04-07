@@ -5,17 +5,13 @@ import { MobileNavbar } from "@/components/mobile-navbar";
 const ProtectedLayout = ({ children }: { children: React.ReactNode }) => {
     return (
         <div className="min-h-screen bg-white flex">
-            <div className="hidden lg:block">
-                <DesktopNavbar />
-            </div>
+            <DesktopNavbar />
 
-            <div className="block lg:hidden">
-                <MobileNavbar />
-            </div>
+            <MobileNavbar />
 
             <MobileBackground />
 
-            <div className="bg-white flex-1 mt-12 md:mt-16 z-10 lg:mt-0 rounded-t-lg md:rounded-t-2xl lg:rounded-none px-4 py-5 md:px-8 md:py-6 lg:p-0">
+            <div className="bg-white mt-12 md:mt-16 z-10 lg:mt-0 rounded-t-lg md:rounded-t-2xl lg:rounded-none px-4 py-5 md:px-8 md:py-6 lg:p-0 w-full lg:w-[calc(100%-272px)] lg:ml-[272px] lg:h-[calc(100%-80px)]">
                 {children}
             </div>
         </div>
