@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Inter, Noto_Serif, Pacifico, Source_Code_Pro } from "next/font/google";
 import "./globals.css";
+import QueryProvider from "@/components/query-client-provider";
 
 const inter = Inter({
     variable: "--font-inter",
@@ -44,7 +45,7 @@ export default function RootLayout({
             <body
                 className={`${inter.variable} ${noto.variable} ${source_code.variable} ${pacifico.variable} antialiased`}
             >
-                {children}
+                <QueryProvider>{children}</QueryProvider>
             </body>
         </html>
     );

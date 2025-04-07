@@ -1,10 +1,14 @@
+"use client";
 import { HiOutlineHome } from "react-icons/hi";
 import { Logo } from "./logo";
 import { TbFileDownload } from "react-icons/tb";
 import { Seperator } from "./ui/seperator";
 import { DesktopNavItem } from "./desktop-nav-item";
+import { useTags } from "@/hooks/use-tags";
+import { NavTagItem } from "./nav-tag-item";
 
 export const DesktopNavbar = () => {
+    const { data: tags, isLoading } = useTags();
     const navLinks = [
         {
             id: 1,
@@ -32,6 +36,22 @@ export const DesktopNavbar = () => {
                 ))}
 
                 <Seperator className="mt-2" />
+            </div>
+
+            <h3 className="text-sm text-neutral-500 tracking-3 font-inter">
+                Tags
+            </h3>
+
+            <div className="flex flex-col gap-1">
+                {isLoading ? (
+                    <>
+                        <div className="w-full h-10 rounded-lg bg-[#F9F9F9]" />
+                        <div className="w-full h-10 rounded-lg bg-[#F9F9F9]" />
+                        <div className="w-full h-10 rounded-lg bg-[#F9F9F9]" />
+                    </>
+                ) : (
+                    tags?.map((tag) => <NavTagItem tag={tag} key={tag.id} />)
+                )}
             </div>
         </div>
     );

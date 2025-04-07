@@ -72,3 +72,10 @@ model Verification {
 
   @@map("verification")
 }
+
+model Tag {
+  id   String @id @default(uuid())
+  name String
+
+  @@map("tag")
+}
