@@ -43,7 +43,7 @@ export default function RootLayout({
     return (
         <html lang="en">
             <body
-                className={`${inter.variable} ${noto.variable} ${source_code.variable} ${pacifico.variable} antialiased`}
+                className={`${inter.variable} ${noto.variable} ${source_code.variable} ${pacifico.variable} antialiased h-screen`}
             >
                 <QueryProvider>{children}</QueryProvider>
             </body>

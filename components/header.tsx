@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { Input } from "./ui/input";
 import { IoSettingsOutline } from "react-icons/io5";
 
@@ -14,7 +15,12 @@ export const Header = ({ title }: HeaderProps) => {
                     placeholder="Search by title, content, or tags..."
                     className="w-[300px] h-11"
                 />
-                <IoSettingsOutline size={24} className="text-neutral-500" />
+                <Link href="/settings">
+                    <IoSettingsOutline
+                        size={24}
+                        className="text-neutral-500 rounded-full p-1.5 size-9 hover:bg-neutral-100 cursor-pointer transition"
+                    />
+                </Link>
             </div>
         </div>
     );
