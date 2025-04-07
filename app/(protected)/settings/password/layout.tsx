@@ -1,6 +1,6 @@
 import { SettingsNavbar } from "@/components/settings-navbar";
 
-const ColorPageLayout = ({ children }: { children: React.ReactNode }) => {
+const PasswordPageLayout = ({ children }: { children: React.ReactNode }) => {
     return (
         <>
             <div className="hidden lg:block w-[258px]">
@@ -11,4 +11,4 @@ const ColorPageLayout = ({ children }: { children: React.ReactNode }) => {
     );
 };
 
-export default ColorPageLayout;
+export default PasswordPageLayout;

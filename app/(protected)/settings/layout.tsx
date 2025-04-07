@@ -5,14 +5,7 @@ const SettingsLayout = ({ children }: { children: React.ReactNode }) => {
     return (
         <div className="h-full w-full">
             <Header title="Settings" />
-            <div className="lg:mt-20 lg:flex h-full">
-                <div className="flex">
-                    <div className="hidden lg:block w-[258px]">
-                        <SettingsNavbar />
-                    </div>
-                    <div>{children}</div>
-                </div>
-            </div>
+            <div className="lg:mt-20 lg:flex h-full">{children}</div>
         </div>
     );
 };
