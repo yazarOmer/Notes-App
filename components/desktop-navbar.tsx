@@ -45,9 +45,9 @@ export const DesktopNavbar = () => {
             <div className="flex flex-col gap-1">
                 {isLoading ? (
                     <>
-                        <div className="w-full h-10 rounded-lg bg-[#F9F9F9]" />
-                        <div className="w-full h-10 rounded-lg bg-[#F9F9F9]" />
-                        <div className="w-full h-10 rounded-lg bg-[#F9F9F9]" />
+                        <div className="w-full h-10 rounded-lg bg-[#F9F9F9] animate-pulse" />
+                        <div className="w-full h-10 rounded-lg bg-[#F9F9F9] animate-pulse" />
+                        <div className="w-full h-10 rounded-lg bg-[#F9F9F9] animate-pulse" />
                     </>
                 ) : (
                     tags?.map((tag) => <NavTagItem tag={tag} key={tag.id} />)
