@@ -10,9 +10,15 @@ const FontPage = () => {
     const [selectedFont, setSelectedFont] = useState(font);
 
     return (
-        <div className="p-8 w-[528px]">
-            <h2 className="text-neutral-950 font-medium">Font Theme</h2>
-            <p className="text-sm text-neutral-700">Choose your font theme:</p>
+        <div className="lg:p-8 lg:w-[528px] w-full">
+            <div className="flex flex-col gap-2 mt-3">
+                <h2 className="text-neutral-950 font-bold text-2xl lg:font-medium lg:text-base">
+                    Font Theme
+                </h2>
+                <p className="text-sm text-neutral-700">
+                    Choose your font theme:
+                </p>
+            </div>
 
             <RadioGroup
                 value={selectedFont}
@@ -20,7 +26,7 @@ const FontPage = () => {
                     setSelectedFont(e.target.value as FontKey)
                 }
             >
-                <div className="mt-6 flex flex-col gap-4">
+                <div className="lg:mt-6 mt-5 flex flex-col gap-4">
                     <Radio
                         icon="a"
                         value="sansSerif"

@@ -25,7 +25,7 @@ export const DesktopNavbar = () => {
     ];
 
     return (
-        <div className="hidden w-[272px] h-screen bg-white lg:flex flex-col fixed left-0 top-0 px-4 py-3 gap-4 border-r border-neutral-200">
+        <div className="hidden w-[272px] h-screen bg-white dark:bg-neutral-800 lg:flex flex-col fixed left-0 top-0 px-4 py-3 gap-4 border-r border-neutral-200">
             <div className="py-3">
                 <Logo />
             </div>
