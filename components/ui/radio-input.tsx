@@ -27,8 +27,9 @@ export const Radio = ({
     return (
         <label
             className={twMerge(
-                "w-full h-18 flex items-center justify-between gap-4 p-4 rounded-xl border border-neutral-200 bg-white cursor-pointer",
-                value === props.value && "bg-neutral-100"
+                "w-full h-18 flex items-center justify-between gap-4 p-4 rounded-xl border border-neutral-200 dark:border-neutral-800 bg-white dark:bg-neutral-950 cursor-pointer",
+                value === props.value &&
+                    "bg-neutral-100 dark:bg-neutral-800 border-neutral-700"
             )}
         >
             <input
@@ -39,28 +40,28 @@ export const Radio = ({
                 {...props}
             />
             <div className="flex gap-4 items-center">
-                <div className="size-10 bg-white border border-neutral-200 rounded-xl flex items-center justify-center">
+                <div className="size-10 bg-white dark:bg-neutral-950 border border-neutral-200 dark:border-neutral-700 dark:text-white rounded-xl flex items-center justify-center">
                     {icon}
                 </div>
                 <div>
-                    <h3 className="text-sm text-neutral-950 font-medium">
+                    <h3 className="text-sm text-neutral-950 dark:text-white font-medium">
                         {title}
                     </h3>
-                    <span className="text-xs text-neutral-700">
+                    <span className="text-xs text-neutral-700 dark:text-neutral-300">
                         {description}
                     </span>
                 </div>
             </div>
             <div
                 className={twMerge(
-                    "size-4 bg-neutral-200 rounded-full flex items-center justify-center",
-                    value === props.value && "bg-blue-500"
+                    "size-4 bg-neutral-200 dark:bg-neutral-600  rounded-full flex items-center justify-center",
+                    value === props.value && "bg-blue-500 dark:bg-blue-500"
                 )}
             >
                 <div
                     className={twMerge(
-                        "bg-white rounded-full size-3.5",
-                        value === props.value && "size-2"
+                        "bg-white dark:bg-neutral-950 rounded-full size-3.5",
+                        value === props.value && "size-2 dark:bg-neutral-800"
                     )}
                 ></div>
             </div>

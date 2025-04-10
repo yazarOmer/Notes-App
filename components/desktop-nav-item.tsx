@@ -23,8 +23,9 @@ export const DesktopNavItem = ({
         <Link
             href={href}
             className={twMerge(
-                "px-3 py-[10px] rounded-lg flex items-center justify-between hover:bg-neutral-100",
-                isActive && "bg-neutral-100 border border-[#E0E4E4]"
+                "px-3 py-[10px] rounded-lg flex items-center justify-between hover:bg-neutral-100 hover:dark:bg-neutral-800",
+                isActive &&
+                    "bg-neutral-100 border border-[#E0E4E4] dark:bg-neutral-800"
             )}
         >
             <div
@@ -35,17 +36,22 @@ export const DesktopNavItem = ({
             >
                 <div
                     className={twMerge(
-                        "text-neutral-700",
-                        isActive && "text-blue-500"
+                        "text-neutral-700 dark:text-neutral-200",
+                        isActive && "text-blue-500 dark:text-blue-500"
                     )}
                 >
                     {icon}
                 </div>
-                {label}
+                <span className="dark:text-neutral-200 text-neutral-700">
+                    {label}
+                </span>
             </div>
 
             {isActive && (
-                <FaChevronRight size={12} className="text-neutral-950" />
+                <FaChevronRight
+                    size={12}
+                    className="text-neutral-950 dark:text-neutral-200"
+                />
             )}
         </Link>
     );

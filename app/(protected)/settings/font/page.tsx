@@ -12,10 +12,10 @@ const FontPage = () => {
     return (
         <div className="lg:p-8 lg:w-[528px] w-full">
             <div className="flex flex-col gap-2 mt-3">
-                <h2 className="text-neutral-950 font-bold text-2xl lg:font-medium lg:text-base">
+                <h2 className="text-neutral-950 dark:text-white font-bold text-2xl lg:font-medium lg:text-base">
                     Font Theme
                 </h2>
-                <p className="text-sm text-neutral-700">
+                <p className="text-sm text-neutral-700 dark:text-neutral-300">
                     Choose your font theme:
                 </p>
             </div>

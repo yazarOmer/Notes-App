@@ -36,6 +36,7 @@
   --tracking-2: -0.3px;
   --tracking-3: -0.2px;
 
+  --drop-shadow-dark: 0 -4px 6px rgba(0, 0, 0, 0.3);
   --drop-shadow-sm: 0 4px 6px rgba(240, 240, 240, 0.6);
   --drop-shadow-lg: 0 8px 12px rgba(240, 240, 240, 0.6);
   --drop-shadow-nav: 0 -4px 6px rgba(240, 240, 240, 0.6);

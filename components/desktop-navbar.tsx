@@ -25,7 +25,7 @@ export const DesktopNavbar = () => {
     ];
 
     return (
-        <div className="hidden w-[272px] h-screen bg-white dark:bg-neutral-800 lg:flex flex-col fixed left-0 top-0 px-4 py-3 gap-4 border-r border-neutral-200">
+        <div className="hidden w-[272px] h-screen bg-white dark:bg-neutral-950 lg:flex flex-col fixed left-0 top-0 px-4 py-3 gap-4 border-r border-neutral-200 dark:border-neutral-800">
             <div className="py-3">
                 <Logo />
             </div>
@@ -38,7 +38,7 @@ export const DesktopNavbar = () => {
                 <Seperator className="mt-2" />
             </div>
 
-            <h3 className="text-sm text-neutral-500 tracking-3 font-inter">
+            <h3 className="text-sm text-neutral-500 font-medium tracking-3 px-2">
                 Tags
             </h3>
 

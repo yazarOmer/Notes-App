@@ -46,21 +46,31 @@ export const SettingsNavbar = () => {
     ];
 
     return (
-        <div className="lg:border-r border-neutral-200 lg:max-w-[258px] h-[820px] flex flex-1 flex-col gap-2 lg:pl-8 lg:pr-4 lg:py-5 p-0 mt-4 lg:mt-0">
+        <div className="lg:border-r border-neutral-200 dark:border-neutral-800 lg:max-w-[258px] h-[820px] flex flex-1 flex-col gap-2 lg:pl-8 lg:pr-4 lg:py-5 p-0 mt-4 lg:mt-0">
             {links.map((item) => (
                 <Link
                     key={item.id}
                     href={item.href}
                     className={twMerge(
-                        "w-full p-2 flex items-center justify-between hover:bg-neutral-100 transition rounded-md text-neutral-950",
-                        pathname === item.href && "bg-neutral-100"
+                        "w-full p-2 flex items-center justify-between hover:bg-neutral-100 hover:dark:bg-neutral-800 transition rounded-md text-neutral-950",
+                        pathname === item.href &&
+                            "bg-neutral-100 dark:bg-neutral-800"
                     )}
                 >
-                    <div className="flex items-center gap-2 text-sm">
-                        {item.icon}
+                    <div className="flex items-center gap-2 text-sm dark:text-white">
+                        <span
+                            className={twMerge(
+                                "",
+                                pathname === item.href && "text-blue-500"
+                            )}
+                        >
+                            {item.icon}
+                        </span>
                         {item.label}
                     </div>
-                    {pathname === item.href && <FaChevronRight size={12} />}
+                    {pathname === item.href && (
+                        <FaChevronRight className="text-white" size={12} />
+                    )}
                 </Link>
             ))}
 
@@ -68,7 +78,7 @@ export const SettingsNavbar = () => {
 
             <button
                 onClick={onSignOut}
-                className="w-full p-2 flex items-center gap-2 bg-white hover:bg-neutral-100 rounded-md text-neutral-950 transition cursor-pointer text-sm"
+                className="w-full p-2 flex items-center gap-2 bg-white dark:bg-transparent hover:bg-neutral-100 hover:dark:bg-neutral-800 rounded-md text-neutral-950 dark:text-white transition cursor-pointer text-sm"
             >
                 <FiLogOut size={16} />
                 Logout
