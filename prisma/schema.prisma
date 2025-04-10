@@ -74,8 +74,20 @@ model Verification {
 }
 
 model Tag {
-  id   String @id @default(uuid())
-  name String
+  id    String @id @default(uuid())
+  name  String
+  notes Note[] @relation("NoteTags")
 
   @@map("tag")
+}
+
+model Note {
+  id        String   @id @default(uuid())
+  title     String
+  content   String
+  tags      Tag[]    @relation("NoteTags")
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@map("note")
 }
