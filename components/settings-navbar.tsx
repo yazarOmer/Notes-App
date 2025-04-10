@@ -56,7 +56,7 @@ export const SettingsNavbar = () => {
                         pathname === item.href && "bg-neutral-100"
                     )}
                 >
-                    <div className="flex items-center gap-2 text-sm font-inter">
+                    <div className="flex items-center gap-2 text-sm">
                         {item.icon}
                         {item.label}
                     </div>
@@ -68,7 +68,7 @@ export const SettingsNavbar = () => {
 
             <button
                 onClick={onSignOut}
-                className="w-full p-2 flex items-center gap-2 bg-white hover:bg-neutral-100 rounded-md text-neutral-950 transition cursor-pointer text-sm font-inter"
+                className="w-full p-2 flex items-center gap-2 bg-white hover:bg-neutral-100 rounded-md text-neutral-950 transition cursor-pointer text-sm"
             >
                 <FiLogOut size={16} />
                 Logout

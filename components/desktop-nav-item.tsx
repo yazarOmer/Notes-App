@@ -29,7 +29,7 @@ export const DesktopNavItem = ({
         >
             <div
                 className={twMerge(
-                    "flex items-center gap-2 h-full w-full text-sm font-inter text-neutral-700",
+                    "flex items-center gap-2 h-full w-full text-sm text-neutral-700",
                     isActive && "text-neutral-950"
                 )}
             >

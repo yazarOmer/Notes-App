@@ -1,30 +1,12 @@
-import { useEffect, useState } from "react";
-
-export type Font = "sansSerif" | "serif" | "monospace";
-
-const classes = {
-    sansSerif: "font-inter",
-    serif: "font-noto",
-    monospace: "font-source-code",
-};
+// hooks/useFont.ts
+import { useFontStore } from "@/store/useFontStore";
 
 export const useFont = () => {
-    const [font, setFont] = useState<Font>("sansSerif");
-
-    useEffect(() => {
-        const savedFont = localStorage.getItem("font") as Font;
-        if (savedFont) {
-            setFont(savedFont);
-        }
-    }, []);
-
-    useEffect(() => {
-        localStorage.setItem("font", font);
-    }, [font]);
+    const font = useFontStore((state) => state.font);
+    const setFont = useFontStore((state) => state.setFont);
 
     return {
         font,
         setFont,
-        classes,
     };
 };

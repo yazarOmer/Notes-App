@@ -1,7 +1,8 @@
 "use client";
 import { Button } from "@/components/ui/button";
 import { Radio, RadioGroup } from "@/components/ui/radio-input";
-import { Font, useFont } from "@/hooks/use-font";
+import { useFont } from "@/hooks/use-font";
+import { FontKey } from "@/store/useFontStore";
 import { ChangeEvent, useState } from "react";
 
 const FontPage = () => {
@@ -16,7 +17,7 @@ const FontPage = () => {
             <RadioGroup
                 value={selectedFont}
                 onChange={(e: ChangeEvent<HTMLInputElement>) =>
-                    setSelectedFont(e.target.value as Font)
+                    setSelectedFont(e.target.value as FontKey)
                 }
             >
                 <div className="mt-6 flex flex-col gap-4">
