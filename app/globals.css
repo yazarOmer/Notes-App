@@ -40,6 +40,7 @@
   --drop-shadow-sm: 0 4px 6px rgba(240, 240, 240, 0.6);
   --drop-shadow-lg: 0 8px 12px rgba(240, 240, 240, 0.6);
   --drop-shadow-nav: 0 -4px 6px rgba(240, 240, 240, 0.6);
+  --drop-shadow-button: 0 7px 11px rgba(202, 207, 216, 0.7);
   --shadow-border:  0 0 0 2px rgba(240,240,240), 0 0 0 4px rgba(153,160,174);
 
   --breakpoint-sm: 375px;

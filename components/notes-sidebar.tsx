@@ -1,16 +1,32 @@
 "use client";
-import { LoaderCircle } from "lucide-react";
+import { LoaderCircle, Plus } from "lucide-react";
 import { Button } from "./ui/button";
 import { Seperator } from "./ui/seperator";
 import { useNotes } from "@/hooks/use-notes";
+import { usePathname } from "next/navigation";
 
 export const NotesSidebar = () => {
+    const pathname = usePathname();
+
+    const mode = pathname.startsWith("/notes") ? "all" : "archived";
     const { data, isLoading } = useNotes();
 
+    const message =
+        mode === "all"
+            ? "You don’t have any notes yet. Start a new note to capture your thoughts and ideas."
+            : "No notes have been archived yet. Move notes here for safekeeping, or create a new note.";
+
     return (
-        <div className="w-[290px] h-full border-r border-neutral-200 dark:border-neutral-800 flex flex-col gap-3 pl-8 pt-5 pr-4 pb-5">
-            <Button size="sm" className="w-full py-3">
+        <div className="lg:max-w-[290px] w-full h-full lg:border-r md:border-b  border-neutral-200 dark:border-neutral-800 flex flex-col gap-3 lg:pl-8 lg:pr-4 lg:py-5 p-0 mt-4 lg:mt-0 relative">
+            <Button size="sm" className="w-full py-3 hidden lg:flex">
                 Create New Note
+            </Button>
+
+            <Button
+                size="icon"
+                className="lg:hidden absolute md:bottom-40 bottom-28 right-0 drop-shadow-button"
+            >
+                <Plus className="size-8" />
             </Button>
 
             {isLoading && (
@@ -20,10 +36,17 @@ export const NotesSidebar = () => {
             )}
 
             {data && data.length == 0 && (
-                <p className="bg-neutral-100 dark:bg-neutral-800 dark:border-neutral-700 dark:text-white border border-neutral-200 p-2 rounded-lg text-sm text-neutral-950">
-                    You don’t have any notes yet. Start a new note to capture
-                    your thoughts and ideas.
-                </p>
+                <>
+                    {mode === "archived" && (
+                        <p className="text-sm text-neutral-700 text-balance">
+                            All your archived notes are stored here. You can
+                            restore or delete them anytime.
+                        </p>
+                    )}
+                    <p className="bg-neutral-100 dark:bg-neutral-800 dark:border-neutral-700 dark:text-white border border-neutral-200 p-2 rounded-lg text-sm text-neutral-950">
+                        {message}
+                    </p>
+                </>
             )}
 
             <div className="flex flex-col gap-1">

@@ -1,5 +1,5 @@
 const NotesPage = () => {
-    return <div className="h-full w-full">asd</div>;
+    return <div className="h-full w-full"></div>;
 };
 
 export default NotesPage;
