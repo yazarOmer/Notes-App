@@ -9,7 +9,7 @@ export const NotesSidebar = () => {
     const pathname = usePathname();
 
     const mode = pathname.startsWith("/notes") ? "all" : "archived";
-    const { data, isLoading } = useNotes();
+    const { data, isLoading } = useNotes(mode);
 
     const message =
         mode === "all"

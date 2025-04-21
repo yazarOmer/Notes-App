@@ -4,11 +4,15 @@ import { InferResponseType } from "hono";
 
 type ResponseType = InferResponseType<typeof client.api.notes.$get>;
 
-export const useNotes = () => {
+export const useNotes = (mode: "all" | "archived") => {
     const query = useQuery<ResponseType>({
-        queryKey: ["notes"],
+        queryKey: ["notes", { mode }],
         queryFn: async () => {
-            const response = await client.api.notes.$get();
+            const response = await client.api.notes.$get({
+                query: {
+                    mode,
+                },
+            });
             return await response.json();
         },
     });
