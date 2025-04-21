@@ -14,3 +14,9 @@ export const RegisterSchema = z.object({
         message: "Password must be at least 8 characters.",
     }),
 });
+
+export const CreateNoteSchema = z.object({
+    title: z.string().min(1, { message: "Title is required" }),
+    tags: z.string().min(1, { message: "Tags is required" }),
+    content: z.string().min(1, { message: "Content is required" }),
+});
