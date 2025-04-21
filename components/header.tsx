@@ -1,14 +1,24 @@
+"use client";
+
 import Link from "next/link";
 import { Input } from "./ui/input";
 import { IoSettingsOutline } from "react-icons/io5";
+import { usePathname } from "next/navigation";
 
-interface HeaderProps {
-    title: string;
-}
+export const Header = () => {
+    const pathname = usePathname();
+    console.log(pathname);
 
-export const Header = ({ title }: HeaderProps) => {
+    const title = pathname.startsWith("/notes")
+        ? "All Notes"
+        : pathname.startsWith("/archived")
+        ? "Archived Notes"
+        : pathname.startsWith("/settings")
+        ? "Settings"
+        : "";
+
     return (
-        <div className="flex items-center lg:fixed lg:top-0 bg-white dark:bg-neutral-950 justify-between w-full lg:w-[calc(100%-272px)] lg:h-20 lg:px-8 lg:border-b border-neutral-200 dark:border-neutral-800">
+        <div className="flex items-center lg:top-0 bg-white dark:bg-neutral-950 justify-between w-full lg:w-[calc(100%-272px)] lg:h-20 lg:px-8 lg:border-b border-neutral-200 dark:border-neutral-800">
             <h1 className="text-neutral-950 dark:text-white text-2xl font-bold">
                 {title}
             </h1>

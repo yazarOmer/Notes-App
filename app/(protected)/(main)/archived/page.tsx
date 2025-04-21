@@ -1,3 +1,3 @@
 export default function ArchivedPage() {
-    return <div></div>;
+    return <div>asd</div>;
 }

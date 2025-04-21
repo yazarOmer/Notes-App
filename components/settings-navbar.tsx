@@ -46,7 +46,7 @@ export const SettingsNavbar = () => {
     ];
 
     return (
-        <div className="lg:border-r border-neutral-200 dark:border-neutral-800 lg:max-w-[258px] h-[820px] flex flex-1 flex-col gap-2 lg:pl-8 lg:pr-4 lg:py-5 p-0 mt-4 lg:mt-0">
+        <div className="lg:border-r border-neutral-200 dark:border-neutral-800 lg:max-w-[258px] h-full flex flex-1 flex-col gap-2 lg:pl-8 lg:pr-4 lg:py-5 p-0 mt-4 lg:mt-0">
             {links.map((item) => (
                 <Link
                     key={item.id}
