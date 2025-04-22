@@ -13,6 +13,7 @@ import { MdOutlineRestore } from "react-icons/md";
 import { MdOutlineArchive } from "react-icons/md";
 import { useUpdateNote } from "@/hooks/use-update-note";
 import { useRouter } from "next/navigation";
+import { useDeleteNoteModal } from "@/hooks/use-delete-note-modal";
 
 interface ViewNoteProps {
     id: string;
@@ -32,6 +33,8 @@ export const ViewNote = ({ id }: ViewNoteProps) => {
     );
     const [isDisable, setIsDisable] = useState(false);
     const { mutate, isPending } = useUpdateNote();
+
+    const { openModal } = useDeleteNoteModal();
 
     useEffect(() => {
         if (note) {
@@ -68,6 +71,10 @@ export const ViewNote = ({ id }: ViewNoteProps) => {
                 },
             }
         );
+    };
+
+    const onDelete = () => {
+        openModal();
     };
 
     if (isLoading) {
@@ -194,7 +201,11 @@ export const ViewNote = ({ id }: ViewNoteProps) => {
 
                     {isArchived ? "Restore Note" : "Archive Note"}
                 </Button>
-                <Button variant="border" className="justify-start gap-2">
+                <Button
+                    variant="border"
+                    className="justify-start gap-2"
+                    onClick={onDelete}
+                >
                     <LuTrash2 size={20} />
                     Delete Note
                 </Button>

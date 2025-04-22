@@ -3,6 +3,7 @@ import { Inter, Noto_Serif, Pacifico, Source_Code_Pro } from "next/font/google";
 import "./globals.css";
 import QueryProvider from "@/components/query-client-provider";
 import { FontProvider } from "@/components/font-provider";
+import { DeleteModal } from "@/components/delete-modal";
 
 const inter = Inter({
     variable: "--font-inter",
@@ -47,7 +48,10 @@ export default function RootLayout({
                 className={`${inter.variable} ${noto.variable} ${source_code.variable} ${pacifico.variable} antialiased h-screen`}
             >
                 <QueryProvider>
-                    <FontProvider>{children}</FontProvider>
+                    <FontProvider>
+                        <DeleteModal />
+                        {children}
+                    </FontProvider>
                 </QueryProvider>
             </body>
         </html>

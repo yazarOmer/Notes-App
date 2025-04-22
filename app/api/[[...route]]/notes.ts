@@ -65,6 +65,17 @@ const notes = new Hono()
 
         return c.json({ message: "Note created", data: note });
     })
+    .delete(
+        "/:id",
+        zValidator("param", z.object({ id: z.string() })),
+        async (c) => {
+            const { id } = c.req.valid("param");
+
+            const note = await db.note.delete({ where: { id } });
+
+            return c.json({ message: "Note deleted", data: note });
+        }
+    )
     .patch("/", zValidator("json", UpdateNoteSchema), async (c) => {
         const { content, isArchived, tags, title, id } = c.req.valid("json");
 
