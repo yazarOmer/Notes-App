@@ -71,7 +71,7 @@ export const ViewNote = ({ id }: ViewNoteProps) => {
     if (isLoading) {
         return (
             <div className="w-full lg:max-w-[588px] flex justify-center items-center h-full">
-                <LoaderCircle className="animate-spin" />
+                <LoaderCircle className="animate-spin dark:text-white" />
             </div>
         );
     }
@@ -89,7 +89,7 @@ export const ViewNote = ({ id }: ViewNoteProps) => {
 
     return (
         <div className="lg:flex w-full">
-            <div className="lg:h-full h-[calc(100%-100px)] md:h-[calc(100%-125px)] lg:border-r border-neutral-200 w-full lg:max-w-[588px] lg:px-6 lg:py-5 flex flex-col gap-3 ">
+            <div className="lg:h-full h-[calc(100%-100px)] md:h-[calc(100%-125px)] lg:border-r border-neutral-200 dark:border-neutral-800 w-full lg:max-w-[588px] lg:px-6 lg:py-5 flex flex-col gap-3 ">
                 <div className="flex lg:hidden items-center justify-between pb-3 md:pb-4 border-b border-neutral-200">
                     <Link
                         href="/notes"
@@ -113,17 +113,17 @@ export const ViewNote = ({ id }: ViewNoteProps) => {
                 <input
                     value={title}
                     onChange={(e) => setTitle(e.target.value)}
-                    className="text-neutral-950 text-xl md:text-2xl font-bold placeholder:text-neutral-950 focus-visible:outline-none"
+                    className="text-neutral-950 dark:text-white text-xl md:text-2xl font-bold placeholder:text-neutral-950 focus-visible:outline-none"
                 />
 
                 <div>
                     <div className="flex items-center gap-2">
                         <div className="flex flex-col gap-2 w-[115px]">
-                            <div className="flex items-center gap-1.5 text-neutral-700 text-sm">
+                            <div className="flex items-center gap-1.5 text-neutral-700 dark:text-neutral-300 text-sm">
                                 <TbTag size={16} />
                                 Tags
                             </div>
-                            <div className="flex items-center gap-1.5 text-neutral-700 text-sm whitespace-nowrap">
+                            <div className="flex items-center gap-1.5 text-neutral-700 dark:text-neutral-300 text-sm whitespace-nowrap">
                                 <GoClock size={16} />
                                 Last edited
                             </div>
@@ -132,12 +132,12 @@ export const ViewNote = ({ id }: ViewNoteProps) => {
                             <input
                                 value={tags}
                                 onChange={(e) => setTags(e.target.value)}
-                                className="text-sm w-full text-neutral-950 placeholder:text-neutral-400 h-6 px-2 focus-visible:outline-2 focus-visible:outline-neutral-500 rounded-sm"
+                                className="text-sm w-full text-neutral-950 dark:text-white placeholder:text-neutral-400 h-6 px-2 focus-visible:outline-2 focus-visible:outline-neutral-500 rounded-sm"
                                 placeholder={tags}
                             />
                             <input
                                 disabled
-                                className="text-xs w-full text-neutral-950 placeholder:text-neutral-400 h-6 px-2 focus-visible:outline-2 focus-visible:outline-neutral-500 rounded-sm"
+                                className="text-xs w-full text-neutral-950 dark:text-neutral-300 placeholder:text-neutral-400 h-6 px-2 focus-visible:outline-2 focus-visible:outline-neutral-500 rounded-sm"
                                 placeholder={formattedDate}
                             />
                         </div>
@@ -150,7 +150,7 @@ export const ViewNote = ({ id }: ViewNoteProps) => {
                     value={content}
                     onChange={(e) => setContent(e.target.value)}
                     placeholder="Start typing your note here..."
-                    className="text-sm text-neutral-950 placeholder-text-neutral-700 h-full p-1 focus-visible:outline-2 focus-visible:outline-neutral-500 rounded-sm"
+                    className="text-sm text-neutral-950 dark:text-neutral-100 placeholder-text-neutral-700 h-full p-1 focus-visible:outline-2 focus-visible:outline-neutral-500 rounded-sm"
                 ></textarea>
 
                 <Seperator className="hidden lg:block" />

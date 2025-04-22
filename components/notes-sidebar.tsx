@@ -1,11 +1,10 @@
 "use client";
 import { LoaderCircle, Plus } from "lucide-react";
 import { Button } from "./ui/button";
-import { Seperator } from "./ui/seperator";
 import { useNotes } from "@/hooks/use-notes";
 import { usePathname } from "next/navigation";
 import Link from "next/link";
-import { twMerge } from "tailwind-merge";
+import { NoteCard } from "./note-card";
 
 export const NotesSidebar = () => {
     const pathname = usePathname();
@@ -19,7 +18,7 @@ export const NotesSidebar = () => {
             : "No notes have been archived yet. Move notes here for safekeeping, or create a new note.";
 
     return (
-        <div className="lg:max-w-[290px] w-full h-full lg:border-r md:border-b  border-neutral-200 dark:border-neutral-800 flex flex-col gap-3 lg:pl-8 lg:pr-4 lg:py-5 p-0 lg:mt-0 relative">
+        <div className="lg:max-w-[290px] w-full h-full lg:border-r md:border-b  border-neutral-200 dark:border-neutral-800 flex flex-col gap-3 lg:pl-8 lg:pr-4 lg:py-5 p-0 lg:mt-0 overflow-auto">
             <Link href="/notes/create">
                 <Button size="sm" className="w-full py-3 hidden lg:flex">
                     Create New Note
@@ -64,39 +63,14 @@ export const NotesSidebar = () => {
                             year: "numeric",
                         });
                         const isActive = pathname === `/notes/${item.id}`;
+                        const isLast = index === arr.length - 1;
                         return (
-                            <Link href={`/notes/${item.id}`} key={item.id}>
-                                <div
-                                    className={twMerge(
-                                        "flex flex-col gap-3 p-2 rounded-md w-full hover:bg-neutral-100",
-                                        isActive &&
-                                            "bg-neutral-100 border border-[#C0D5FF]"
-                                    )}
-                                >
-                                    <h2 className="text-neutral-950 font-semibold">
-                                        {item.title}
-                                    </h2>
-                                    <div className="flex items-center gap-1">
-                                        {item.tags.map((tag) => (
-                                            <div
-                                                key={tag.id}
-                                                className="px-1.5 py-[2px] text-xs text-neutral-950 rounded-sm bg-neutral-200 "
-                                            >
-                                                {tag.name
-                                                    .charAt(0)
-                                                    .toUpperCase() +
-                                                    tag.name.slice(1)}
-                                            </div>
-                                        ))}
-                                    </div>
-                                    <p className="text-xs text-neutral-700">
-                                        {formattedDate}
-                                    </p>
-                                </div>
-                                {index < arr.length - 1 && !isActive && (
-                                    <Seperator className="mt-1" />
-                                )}
-                            </Link>
+                            <NoteCard
+                                note={item}
+                                date={formattedDate}
+                                isActive={isActive}
+                                isLast={isLast}
+                            />
                         );
                     })}
             </div>
