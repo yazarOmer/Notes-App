@@ -43,7 +43,9 @@ export const CreateNoteForm = () => {
                     <Link href="/notes" className="text-neutral-600 text-sm">
                         Cancel
                     </Link>
-                    <Button variant="link">Save Note</Button>
+                    <Button variant="link" onClick={onSubmit}>
+                        Save Note
+                    </Button>
                 </div>
             </div>
 

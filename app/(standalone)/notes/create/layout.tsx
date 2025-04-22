@@ -13,8 +13,8 @@ const CreateNotePageLayout = ({ children }: { children: React.ReactNode }) => {
 
             <MobileBackground />
 
-            <div className="bg-white dark:bg-neutral-950 mt-12 md:mt-16 z-10 lg:mt-0 px-4 py-5 md:px-8 md:py-5 lg:p-0 w-full lg:w-[calc(100%-272px)] lg:ml-[272px] fixed h-full flex flex-col">
-                <div className="hidden w-full lg:flex">
+            <div className="bg-white dark:bg-neutral-950 mt-12 md:mt-16 z-10 lg:mt-0 rounded-t-lg md:rounded-t-2xl lg:rounded-none px-4 py-5 md:px-8 md:py-6 lg:p-0 w-full  lg:ml-[272px] h-full fixed flex flex-col">
+                <div className="hidden h-20 w-full lg:block">
                     <Header />
                 </div>
                 <div className="flex h-full">

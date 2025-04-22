@@ -18,7 +18,7 @@ export const Header = () => {
         : "";
 
     return (
-        <div className="flex items-center lg:top-0 bg-white dark:bg-neutral-950 justify-between w-full lg:w-[calc(100%-272px)] lg:h-20 lg:px-8 lg:border-b border-neutral-200 dark:border-neutral-800">
+        <div className="flex items-center bg-white dark:bg-neutral-950 justify-between w-full lg:w-[calc(100%-272px)] lg:h-20 lg:px-8 lg:border-b border-neutral-200 dark:border-neutral-800">
             <h1 className="text-neutral-950 dark:text-white text-2xl font-bold">
                 {title}
             </h1>
