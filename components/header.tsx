@@ -7,7 +7,6 @@ import { usePathname } from "next/navigation";
 
 export const Header = () => {
     const pathname = usePathname();
-    console.log(pathname);
 
     const title = pathname.startsWith("/notes")
         ? "All Notes"

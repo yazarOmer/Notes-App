@@ -20,3 +20,11 @@ export const CreateNoteSchema = z.object({
     tags: z.string().min(1, { message: "Tags is required" }),
     content: z.string().min(1, { message: "Content is required" }),
 });
+
+export const UpdateNoteSchema = z.object({
+    id: z.string(),
+    title: z.string().min(1, { message: "Title is required" }),
+    tags: z.string().min(1, { message: "Tags is required" }),
+    content: z.string().min(1, { message: "Content is required" }),
+    isArchived: z.boolean(),
+});

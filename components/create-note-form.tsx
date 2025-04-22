@@ -8,10 +8,24 @@ import { Seperator } from "./ui/seperator";
 import { useState } from "react";
 import { useCreateNote } from "@/hooks/use-create-note";
 
-export const CreateNoteForm = () => {
-    const [title, setTitle] = useState("");
-    const [tags, setTags] = useState("");
-    const [content, setContent] = useState("");
+interface CreateNoteFormProps {
+    defaultValues?: {
+        title: string;
+        tags: string;
+        content: string;
+    };
+}
+
+export const CreateNoteForm = ({ defaultValues }: CreateNoteFormProps) => {
+    const [title, setTitle] = useState(
+        (defaultValues && defaultValues.title) || ""
+    );
+    const [tags, setTags] = useState(
+        (defaultValues && defaultValues.tags) || ""
+    );
+    const [content, setContent] = useState(
+        (defaultValues && defaultValues.content) || ""
+    );
 
     const { mutate, isPending } = useCreateNote();
 

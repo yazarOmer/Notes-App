@@ -5,6 +5,7 @@ import { Seperator } from "./ui/seperator";
 import { useNotes } from "@/hooks/use-notes";
 import { usePathname } from "next/navigation";
 import Link from "next/link";
+import { twMerge } from "tailwind-merge";
 
 export const NotesSidebar = () => {
     const pathname = usePathname();
@@ -62,9 +63,16 @@ export const NotesSidebar = () => {
                             month: "short",
                             year: "numeric",
                         });
+                        const isActive = pathname === `/notes/${item.id}`;
                         return (
-                            <div key={item.id}>
-                                <div className="flex flex-col gap-3 p-2 rounded-md w-full hover:bg-neutral-100">
+                            <Link href={`/notes/${item.id}`} key={item.id}>
+                                <div
+                                    className={twMerge(
+                                        "flex flex-col gap-3 p-2 rounded-md w-full hover:bg-neutral-100",
+                                        isActive &&
+                                            "bg-neutral-100 border border-[#C0D5FF]"
+                                    )}
+                                >
                                     <h2 className="text-neutral-950 font-semibold">
                                         {item.title}
                                     </h2>
@@ -85,10 +93,10 @@ export const NotesSidebar = () => {
                                         {formattedDate}
                                     </p>
                                 </div>
-                                {index < arr.length - 1 && (
+                                {index < arr.length - 1 && !isActive && (
                                     <Seperator className="mt-1" />
                                 )}
-                            </div>
+                            </Link>
                         );
                     })}
             </div>
