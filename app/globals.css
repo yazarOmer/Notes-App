@@ -53,3 +53,23 @@ body,
 :root {
   @apply h-full
 }
+
+::-webkit-scrollbar {
+  @apply w-2
+}
+
+::-webkit-scrollbar-track {
+  @apply bg-neutral-100
+}
+
+.dark ::-webkit-scrollbar-track {
+  @apply bg-neutral-800
+}
+
+::-webkit-scrollbar-thumb {
+  @apply bg-neutral-300 hover:bg-neutral-400 rounded-full transition-colors
+}
+
+.dark ::-webkit-scrollbar-thumb {
+  @apply bg-neutral-600
+}

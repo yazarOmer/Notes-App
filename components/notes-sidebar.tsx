@@ -66,6 +66,7 @@ export const NotesSidebar = () => {
                         const isLast = index === arr.length - 1;
                         return (
                             <NoteCard
+                                key={item.id}
                                 note={item}
                                 date={formattedDate}
                                 isActive={isActive}
