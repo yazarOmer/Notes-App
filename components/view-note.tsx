@@ -14,6 +14,7 @@ import { MdOutlineArchive } from "react-icons/md";
 import { useUpdateNote } from "@/hooks/use-update-note";
 import { useRouter } from "next/navigation";
 import { useDeleteNoteModal } from "@/hooks/use-delete-note-modal";
+import { useArchiveNoteModal } from "@/hooks/use-archive-note-modal";
 
 interface ViewNoteProps {
     id: string;
@@ -35,6 +36,7 @@ export const ViewNote = ({ id }: ViewNoteProps) => {
     const { mutate, isPending } = useUpdateNote();
 
     const { openModal } = useDeleteNoteModal();
+    const { openModal: openArchiveModal } = useArchiveNoteModal();
 
     useEffect(() => {
         if (note) {
@@ -71,6 +73,18 @@ export const ViewNote = ({ id }: ViewNoteProps) => {
                 },
             }
         );
+    };
+
+    const toggleArchive = () => {
+        setIsArchived((prev) => !prev);
+    };
+
+    const onArchive = () => {
+        if (!isArchived) {
+            openArchiveModal(toggleArchive);
+        } else {
+            setIsArchived(false);
+        }
     };
 
     const onDelete = () => {
@@ -191,7 +205,7 @@ export const ViewNote = ({ id }: ViewNoteProps) => {
                 <Button
                     variant="border"
                     className="justify-start gap-2"
-                    onClick={() => setIsArchived((prev) => !prev)}
+                    onClick={onArchive}
                 >
                     {isArchived ? (
                         <MdOutlineRestore size={20} />

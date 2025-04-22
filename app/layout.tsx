@@ -4,6 +4,7 @@ import "./globals.css";
 import QueryProvider from "@/components/query-client-provider";
 import { FontProvider } from "@/components/font-provider";
 import { DeleteModal } from "@/components/delete-modal";
+import { ArchiveModal } from "@/components/archive-modal";
 
 const inter = Inter({
     variable: "--font-inter",
@@ -50,6 +51,7 @@ export default function RootLayout({
                 <QueryProvider>
                     <FontProvider>
                         <DeleteModal />
+                        <ArchiveModal />
                         {children}
                     </FontProvider>
                 </QueryProvider>

@@ -50,6 +50,7 @@ export const DeleteModal = () => {
                 <Button
                     className="w-fit"
                     disabled={isPending}
+                    variant="danger"
                     onClick={onDelete}
                 >
                     {isPending ? (
