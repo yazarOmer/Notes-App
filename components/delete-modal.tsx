@@ -10,9 +10,21 @@ import {
 } from "./ui/dialog";
 import { LuTrash2 } from "react-icons/lu";
 import { Button } from "./ui/button";
+import { useParams } from "next/navigation";
+import { useDeleteNote } from "@/hooks/use-delete-note";
+import { LoaderCircle } from "lucide-react";
 
 export const DeleteModal = () => {
     const { isOpen, closeModal } = useDeleteNoteModal();
+
+    const params = useParams<{ id: string }>();
+
+    const { mutate, isPending } = useDeleteNote({ id: params.id });
+
+    const onDelete = () => {
+        mutate();
+    };
+
     return (
         <Modal isOpen={isOpen}>
             <ModalHeader>
@@ -35,7 +47,17 @@ export const DeleteModal = () => {
                 >
                     Cancel
                 </Button>
-                <Button className="w-fit">Delete Note</Button>
+                <Button
+                    className="w-fit"
+                    disabled={isPending}
+                    onClick={onDelete}
+                >
+                    {isPending ? (
+                        <LoaderCircle className="animate-spin" />
+                    ) : (
+                        "Delete Note"
+                    )}
+                </Button>
             </ModalFooter>
         </Modal>
     );
