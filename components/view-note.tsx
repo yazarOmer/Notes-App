@@ -12,6 +12,7 @@ import { LuTrash2 } from "react-icons/lu";
 import { MdOutlineRestore } from "react-icons/md";
 import { MdOutlineArchive } from "react-icons/md";
 import { useUpdateNote } from "@/hooks/use-update-note";
+import { useRouter } from "next/navigation";
 
 interface ViewNoteProps {
     id: string;
@@ -19,6 +20,7 @@ interface ViewNoteProps {
 
 export const ViewNote = ({ id }: ViewNoteProps) => {
     const { data: note, isLoading } = useNote({ id });
+    const router = useRouter();
 
     const [title, setTitle] = useState((note && note.title) || "");
     const [tags, setTags] = useState(
@@ -150,7 +152,7 @@ export const ViewNote = ({ id }: ViewNoteProps) => {
                     value={content}
                     onChange={(e) => setContent(e.target.value)}
                     placeholder="Start typing your note here..."
-                    className="text-sm text-neutral-950 dark:text-neutral-100 placeholder-text-neutral-700 h-full p-1 focus-visible:outline-2 focus-visible:outline-neutral-500 rounded-sm"
+                    className="text-sm text-neutral-950 dark:text-neutral-100 placeholder-text-neutral-700 lg:h-[calc(100%-300px)] sm:h-[calc(100%-100px)] p-1 focus-visible:outline-2 focus-visible:outline-neutral-500 rounded-sm"
                 ></textarea>
 
                 <Seperator className="hidden lg:block" />
@@ -168,7 +170,12 @@ export const ViewNote = ({ id }: ViewNoteProps) => {
                             "Save Note"
                         )}
                     </Button>
-                    <Button className="w-fit" variant="secondary" size="sm">
+                    <Button
+                        className="w-fit"
+                        variant="secondary"
+                        size="sm"
+                        onClick={() => router.push("/notes")}
+                    >
                         Cancel
                     </Button>
                 </div>
