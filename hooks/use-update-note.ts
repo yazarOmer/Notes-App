@@ -13,9 +13,10 @@ export const useUpdateNote = () => {
             const response = await client.api.notes.$patch({ json });
             return await response.json();
         },
-        onSuccess: () => {
+        onSuccess: ({ data: { id } }) => {
             queryClient.invalidateQueries({ queryKey: ["tags"] });
             queryClient.invalidateQueries({ queryKey: ["notes"] });
+            queryClient.invalidateQueries({ queryKey: ["note", { id }] });
         },
     });
 
