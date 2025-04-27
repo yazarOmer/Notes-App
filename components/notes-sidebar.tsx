@@ -2,19 +2,35 @@
 import { LoaderCircle, Plus } from "lucide-react";
 import { Button } from "./ui/button";
 import { useNotes } from "@/hooks/use-notes";
-import { usePathname } from "next/navigation";
+import { usePathname, useSearchParams } from "next/navigation";
 import Link from "next/link";
 import { NoteCard } from "./note-card";
+import { useState } from "react";
+import { useDebounce } from "@/hooks/use-debounce";
 
 export const NotesSidebar = () => {
     const pathname = usePathname();
+    const searchParams = useSearchParams();
 
-    const mode = pathname.startsWith("/notes") ? "all" : "archived";
-    const { data, isLoading } = useNotes(mode);
+    const query = searchParams.get("q") || "";
+
+    // const debouncedQuery = useDebounce(query, 300);
+
+    const mode = pathname.startsWith("/notes")
+        ? "all"
+        : pathname.startsWith("/archived")
+        ? "archived"
+        : pathname.startsWith("/search")
+        ? "search"
+        : "all";
+
+    const { data, isLoading } = useNotes(mode, query);
 
     const message =
         mode === "all"
             ? "You don’t have any notes yet. Start a new note to capture your thoughts and ideas."
+            : mode === "search"
+            ? "No notes match your search. Try a different keyword or create a new note."
             : "No notes have been archived yet. Move notes here for safekeeping, or create a new note.";
 
     return (

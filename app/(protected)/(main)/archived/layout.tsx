@@ -1,9 +1,5 @@
 const ArchivedLayout = ({ children }: { children: React.ReactNode }) => {
-    return (
-        <div className="h-full w-full">
-            <div className="">{children}</div>
-        </div>
-    );
+    return <div className="h-full w-full">{children}</div>;
 };
 
 export default ArchivedLayout;

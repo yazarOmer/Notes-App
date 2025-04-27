@@ -7,23 +7,71 @@ import { z } from "zod";
 const notes = new Hono()
     .get(
         "/",
-        zValidator("query", z.object({ mode: z.enum(["all", "archived"]) })),
+        zValidator(
+            "query",
+            z.object({
+                mode: z.enum(["all", "archived", "search"]),
+                query: z.string().optional(),
+            })
+        ),
         async (c) => {
-            const { mode } = c.req.valid("query");
+            const { mode, query } = c.req.valid("query");
 
             let where = {};
+            let notes = [];
 
-            if (mode == "archived") {
+            if (mode === "all") {
+                if (query) {
+                    where = {
+                        OR: [
+                            { title: { contains: query, mode: "insensitive" } },
+                            {
+                                content: {
+                                    contains: query,
+                                    mode: "insensitive",
+                                },
+                            },
+                        ],
+                    };
+                } else {
+                    where = {};
+                }
+            }
+
+            if (mode === "archived") {
+                if (query) {
+                    where = {
+                        OR: [
+                            { title: { contains: query, mode: "insensitive" } },
+                            {
+                                content: {
+                                    contains: query,
+                                    mode: "insensitive",
+                                },
+                            },
+                        ],
+                    };
+                } else {
+                    where = { isArchived: true };
+                }
+            }
+
+            if (mode === "search" && query) {
                 where = {
-                    isArchived: true,
+                    OR: [
+                        { title: { contains: query, mode: "insensitive" } },
+                        {
+                            content: {
+                                contains: query,
+                                mode: "insensitive",
+                            },
+                        },
+                    ],
                 };
             }
-            const notes = await db.note.findMany({
-                include: {
-                    tags: true,
-                },
-                where,
-            });
+
+            notes = await db.note.findMany({ include: { tags: true }, where });
+
             return c.json(notes);
         }
     )
@@ -37,8 +85,6 @@ const notes = new Hono()
                 include: { tags: true },
                 where: { id },
             });
-
-            // if (!note) return c.json({ message: "No data found" }, 400);
 
             return c.json(note, 200);
         }
