@@ -1,6 +1,4 @@
-import { Button } from "./button";
 import { twMerge } from "tailwind-merge";
-import { IconType } from "react-icons";
 import { HTMLAttributes } from "react";
 
 const ModalOverlay = () => {
@@ -74,8 +72,10 @@ const Modal = ({ children, isOpen }: ModalProps) => {
     return (
         <div className={twMerge(!isOpen && "hidden")}>
             <ModalOverlay />
-            <div className="fixed left-[50%] top-[50%] z-30 max-w-lg w-full translate-x-[-50%] translate-y-[-50%] flex flex-col bg-white rounded-2xl">
-                {children}
+            <div className="fixed left-[50%] top-[50%] translate-x-[-50%] translate-y-[-50%] z-30 max-w-lg w-full px-4">
+                <div className="flex flex-col bg-white rounded-2xl">
+                    {children}
+                </div>
             </div>
         </div>
     );

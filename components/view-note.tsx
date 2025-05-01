@@ -123,13 +123,44 @@ export const ViewNote = ({ id }: ViewNoteProps) => {
                     </Link>
 
                     <div className="flex items-center gap-4">
+                        <Button
+                            variant="link"
+                            size="icon"
+                            className="text-neutral-600 max-w-fit max-h-fit p-2"
+                            onClick={onDelete}
+                        >
+                            <LuTrash2 size={16} />
+                        </Button>
+                        <Button
+                            variant="link"
+                            size="icon"
+                            className="text-neutral-600 max-w-fit max-h-fit p-2"
+                            onClick={onArchive}
+                        >
+                            {isArchived ? (
+                                <MdOutlineRestore size={20} />
+                            ) : (
+                                <MdOutlineArchive size={20} />
+                            )}
+                        </Button>
                         <Link
                             href="/notes"
                             className="text-neutral-600 text-sm"
                         >
                             Cancel
                         </Link>
-                        <Button variant="link">Save Note</Button>
+                        <Button
+                            disabled={isDisable || isPending}
+                            variant="link"
+                            size="sm"
+                            onClick={onSubmit}
+                        >
+                            {isPending ? (
+                                <LoaderCircle className="animate-spin" />
+                            ) : (
+                                "Save Note"
+                            )}
+                        </Button>
                     </div>
                 </div>
 
