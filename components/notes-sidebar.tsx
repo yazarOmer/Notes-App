@@ -27,7 +27,9 @@ export const NotesSidebar = () => {
     const { data, isLoading } = useNotes(mode, query);
 
     const message =
-        mode === "all"
+        mode === "all" && query
+            ? "No notes match your search. Try a different keyword or create a new note."
+            : mode === "all"
             ? "You don’t have any notes yet. Start a new note to capture your thoughts and ideas."
             : mode === "search"
             ? "No notes match your search. Try a different keyword or create a new note."
