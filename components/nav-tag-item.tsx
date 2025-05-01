@@ -9,7 +9,7 @@ interface NavTagItemProps {
 export const NavTagItem = ({ tag }: NavTagItemProps) => {
     return (
         <Link
-            href={`/notes?tag=${tag.id}`}
+            href={`/notes?t=${tag.name}`}
             key={tag.id}
             className="w-full px-4 py-2.5 rounded-lg flex items-center gap-2 hover:bg-[#F9F9F9] hover:dark:bg-neutral-800"
         >

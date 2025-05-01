@@ -13,11 +13,14 @@ export const Header = () => {
     const router = useRouter();
 
     const searchQuery = searchParams.get("q") || "";
+    const tagsQuery = searchParams.get("t") || "";
 
     const [searcInput, setSearchInput] = useState(searchQuery);
     const debouncedSearchInput = useDebounce(searcInput, 300);
 
-    const title = searchQuery
+    const title = tagsQuery
+        ? tagsQuery.charAt(0).toUpperCase() + tagsQuery.slice(1)
+        : searchQuery
         ? searchQuery
         : pathname.startsWith("/notes")
         ? "All Notes"
@@ -37,6 +40,7 @@ export const Header = () => {
         const params = new URLSearchParams(searchParams.toString());
 
         if (debouncedSearchInput) {
+            params.delete("t");
             params.set("q", debouncedSearchInput);
         } else {
             params.delete("q");
@@ -48,10 +52,13 @@ export const Header = () => {
     return (
         <div className="flex items-center bg-white dark:bg-neutral-950 justify-between w-full lg:w-[calc(100%-272px)] lg:min-h-20 lg:px-8 lg:border-b border-neutral-200 dark:border-neutral-800">
             <h1 className="text-neutral-950 dark:text-white text-2xl font-bold">
-                {searchQuery && (
+                {searchQuery && !tagsQuery && (
                     <span className="text-neutral-600">
                         Showing results for:{" "}
                     </span>
+                )}
+                {tagsQuery && !searchQuery && (
+                    <span className="text-neutral-600">Notes Tagged: </span>
                 )}
                 {title}
             </h1>

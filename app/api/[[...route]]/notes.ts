@@ -12,10 +12,11 @@ const notes = new Hono()
             z.object({
                 mode: z.enum(["all", "archived", "search"]),
                 query: z.string().optional(),
+                tag: z.string().optional(),
             })
         ),
         async (c) => {
-            const { mode, query } = c.req.valid("query");
+            const { mode, query, tag } = c.req.valid("query");
 
             let where = {};
             let notes = [];
@@ -32,6 +33,14 @@ const notes = new Hono()
                                 },
                             },
                         ],
+                    };
+                } else if (tag) {
+                    where = {
+                        tags: {
+                            some: {
+                                name: tag,
+                            },
+                        },
                     };
                 } else {
                     where = {};

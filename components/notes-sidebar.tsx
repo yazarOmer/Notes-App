@@ -13,8 +13,7 @@ export const NotesSidebar = () => {
     const searchParams = useSearchParams();
 
     const query = searchParams.get("q") || "";
-
-    // const debouncedQuery = useDebounce(query, 300);
+    const tagQuery = searchParams.get("t") || "";
 
     const mode = pathname.startsWith("/notes")
         ? "all"
@@ -24,10 +23,12 @@ export const NotesSidebar = () => {
         ? "search"
         : "all";
 
-    const { data, isLoading } = useNotes(mode, query);
+    const { data, isLoading } = useNotes(mode, query, tagQuery);
 
     const message =
-        mode === "all" && query
+        mode === "all" && tagQuery
+            ? "No notes match this tag. Try a different tag"
+            : mode === "all" && query
             ? "No notes match your search. Try a different keyword or create a new note."
             : mode === "all"
             ? "You don’t have any notes yet. Start a new note to capture your thoughts and ideas."
@@ -62,6 +63,15 @@ export const NotesSidebar = () => {
                 <p className="text-sm text-neutral-700">
                     All your archived notes are stored here. You can restore or
                     delete them anytime.
+                </p>
+            )}
+            {mode === "all" && tagQuery && (
+                <p className="text-sm text-neutral-700">
+                    All notes with the{" "}
+                    {`"${
+                        tagQuery.charAt(0).toUpperCase() + tagQuery.slice(1)
+                    }"`}{" "}
+                    tag are shown here.
                 </p>
             )}
             {data && data.length == 0 && (
