@@ -3,6 +3,7 @@ import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { InferResponseType } from "hono";
 import { useRouter } from "next/navigation";
 import { useDeleteNoteModal } from "./use-delete-note-modal";
+import { useToastStore } from "@/store/useToastStore";
 
 type ResponseType = InferResponseType<
     (typeof client.api.notes)[":id"]["$delete"],
@@ -17,6 +18,7 @@ export const useDeleteNote = ({ id }: UseGetNoteProps) => {
     const queryClient = useQueryClient();
     const router = useRouter();
     const { closeModal } = useDeleteNoteModal();
+    const toast = useToastStore();
 
     const query = useMutation<ResponseType>({
         mutationFn: async () => {
@@ -34,6 +36,8 @@ export const useDeleteNote = ({ id }: UseGetNoteProps) => {
         onSuccess: () => {
             queryClient.invalidateQueries({ queryKey: ["tags"] });
             queryClient.invalidateQueries({ queryKey: ["notes"] });
+            console.log("deleted");
+            toast.success("Note deleted");
             closeModal();
             router.push("/notes");
         },

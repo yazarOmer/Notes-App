@@ -1,4 +1,3 @@
-import { SetStateAction } from "react";
 import { create } from "zustand";
 
 type StoreType = {

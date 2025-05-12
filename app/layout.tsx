@@ -5,6 +5,7 @@ import QueryProvider from "@/components/query-client-provider";
 import { FontProvider } from "@/components/font-provider";
 import { DeleteModal } from "@/components/delete-modal";
 import { ArchiveModal } from "@/components/archive-modal";
+import { ToastProvider } from "@/components/toast-provider";
 
 const inter = Inter({
     variable: "--font-inter",
@@ -49,11 +50,13 @@ export default function RootLayout({
                 className={`${inter.variable} ${noto.variable} ${source_code.variable} ${pacifico.variable} antialiased h-screen`}
             >
                 <QueryProvider>
-                    <FontProvider>
-                        <DeleteModal />
-                        <ArchiveModal />
-                        {children}
-                    </FontProvider>
+                    <ToastProvider>
+                        <FontProvider>
+                            <DeleteModal />
+                            <ArchiveModal />
+                            {children}
+                        </FontProvider>
+                    </ToastProvider>
                 </QueryProvider>
             </body>
         </html>
