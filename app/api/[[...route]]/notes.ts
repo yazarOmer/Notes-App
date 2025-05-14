@@ -1,7 +1,10 @@
+import { auth } from "@/lib/auth";
 import { db } from "@/lib/db";
 import { CreateNoteSchema, UpdateNoteSchema } from "@/lib/schema";
 import { zValidator } from "@hono/zod-validator";
+import { getSession } from "better-auth/api";
 import { Hono } from "hono";
+import { headers } from "next/headers";
 import { z } from "zod";
 
 const notes = new Hono()
@@ -16,14 +19,20 @@ const notes = new Hono()
             })
         ),
         async (c) => {
+            const session = await auth.api.getSession({
+                headers: await headers(),
+            });
+
+            const userId = session?.user.id;
             const { mode, query, tag } = c.req.valid("query");
 
-            let where = {};
+            let where: any = { userId };
             let notes = [];
 
             if (mode === "all") {
                 if (query) {
                     where = {
+                        ...where,
                         OR: [
                             { title: { contains: query, mode: "insensitive" } },
                             {
@@ -36,6 +45,7 @@ const notes = new Hono()
                     };
                 } else if (tag) {
                     where = {
+                        ...where,
                         tags: {
                             some: {
                                 name: tag,
@@ -43,13 +53,14 @@ const notes = new Hono()
                         },
                     };
                 } else {
-                    where = {};
+                    where = { userId };
                 }
             }
 
             if (mode === "archived") {
                 if (query) {
                     where = {
+                        ...where,
                         OR: [
                             { title: { contains: query, mode: "insensitive" } },
                             {
@@ -61,12 +72,13 @@ const notes = new Hono()
                         ],
                     };
                 } else {
-                    where = { isArchived: true };
+                    where = { ...where, isArchived: true };
                 }
             }
 
             if (mode === "search" && query) {
                 where = {
+                    ...where,
                     OR: [
                         { title: { contains: query, mode: "insensitive" } },
                         {
@@ -99,6 +111,15 @@ const notes = new Hono()
         }
     )
     .post("/", zValidator("json", CreateNoteSchema), async (c) => {
+        const session = await auth.api.getSession({
+            headers: await headers(),
+        });
+
+        if (!session) {
+            return c.json({ error: "Unauthorized" }, 401);
+        }
+
+        const userId = session?.user.id;
         const { title, tags, content } = c.req.valid("json");
 
         const tagsArray = tags.split(", ");
@@ -110,10 +131,13 @@ const notes = new Hono()
                 tags: {
                     connectOrCreate: tagsArray.map((tag) => {
                         return {
-                            where: { name: tag },
-                            create: { name: tag },
+                            where: { name: tag, userId },
+                            create: { name: tag, userId },
                         };
                     }),
+                },
+                user: {
+                    connect: { id: userId },
                 },
             },
         });
@@ -132,6 +156,16 @@ const notes = new Hono()
         }
     )
     .patch("/", zValidator("json", UpdateNoteSchema), async (c) => {
+        const session = await auth.api.getSession({
+            headers: await headers(),
+        });
+
+        if (!session) {
+            return c.json({ error: "Unauthorized" }, 401);
+        }
+
+        const userId = session?.user.id;
+
         const { content, isArchived, tags, title, id } = c.req.valid("json");
 
         const tagsArray = tags && tags.split(", ");
@@ -148,8 +182,8 @@ const notes = new Hono()
                         ? {
                               connectOrCreate: tagsArray.map((tag) => {
                                   return {
-                                      where: { name: tag },
-                                      create: { name: tag },
+                                      where: { name: tag, userId },
+                                      create: { name: tag, userId },
                                   };
                               }),
                           }

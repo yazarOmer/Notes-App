@@ -5,8 +5,6 @@ import { useNotes } from "@/hooks/use-notes";
 import { usePathname, useSearchParams } from "next/navigation";
 import Link from "next/link";
 import { NoteCard } from "./note-card";
-import { useState } from "react";
-import { useDebounce } from "@/hooks/use-debounce";
 
 export const NotesSidebar = () => {
     const pathname = usePathname();

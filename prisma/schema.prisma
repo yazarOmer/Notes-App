@@ -23,6 +23,8 @@ model User {
   updatedAt     DateTime
   sessions      Session[]
   accounts      Account[]
+  notes         Note[]
+  tags          Tag[]
 
   @@unique([email])
   @@map("user")
@@ -78,6 +80,9 @@ model Tag {
   name  String @unique
   notes Note[] @relation("NoteTags")
 
+  userId String
+  user   User   @relation(fields: [userId], references: [id])
+
   @@map("tag")
 }
 
@@ -89,6 +94,9 @@ model Note {
   tags       Tag[]    @relation("NoteTags")
   createdAt  DateTime @default(now())
   updatedAt  DateTime @updatedAt
+
+  userId String
+  user   User   @relation(fields: [userId], references: [id])
 
   @@map("note")
 }
