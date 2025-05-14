@@ -98,6 +98,22 @@
 
 ![Font Variants](public/11.png)
 
+#### Mobile Screens - 1
+
+![Mobile Screens1](public/12.png)
+
+#### Mobile Screens - 2
+
+![Mobile Screens2](public/13.png)
+
+#### Mobile Screens - 3
+
+![Mobile Screens3](public/14.png)
+
+#### Mobile Screens - 4
+
+![Mobile Screens4](public/15.png)
+
 ## Getting Started
 
 First, run the development server:

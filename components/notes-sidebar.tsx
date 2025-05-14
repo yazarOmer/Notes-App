@@ -45,7 +45,7 @@ export const NotesSidebar = () => {
             <Link href="/notes/create">
                 <Button
                     size="icon"
-                    className="lg:hidden absolute md:bottom-40 bottom-28 right-0 drop-shadow-button"
+                    className="lg:hidden absolute md:bottom-40 bottom-28 right-5 drop-shadow-button"
                 >
                     <Plus className="size-8" />
                 </Button>
